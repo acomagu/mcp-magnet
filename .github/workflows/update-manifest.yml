@@ -1,0 +1,66 @@
+name: Generate Update Manifest
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate update manifest
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const release = context.payload.release;
+            
+            // Platform mappings for Tauri updater
+            const platforms = {
+              'darwin-aarch64': { filter: 'aarch64.app.tar.gz', arch: 'aarch64' },
+              'darwin-x86_64': { filter: 'x64.app.tar.gz', arch: 'x86_64' },
+              'linux-x86_64': { filter: 'amd64.AppImage.tar.gz', arch: 'x86_64' },
+              'windows-x86_64': { filter: 'x64-setup.nsis.zip', arch: 'x86_64' }
+            };
+            
+            const updateData = {
+              version: release.tag_name.replace('v', ''),
+              notes: release.body || '',
+              pub_date: release.published_at,
+              platforms: {}
+            };
+            
+            // Process each asset
+            for (const asset of release.assets) {
+              for (const [platform, config] of Object.entries(platforms)) {
+                if (asset.name.includes(config.filter)) {
+                  // Find the corresponding signature file
+                  const sigAsset = release.assets.find(a => 
+                    a.name === asset.name + '.sig'
+                  );
+                  
+                  if (sigAsset) {
+                    updateData.platforms[platform] = {
+                      signature: await fetch(sigAsset.browser_download_url)
+                        .then(r => r.text()),
+                      url: asset.browser_download_url
+                    };
+                  }
+                }
+              }
+            }
+            
+            // Write the manifest
+            fs.writeFileSync('latest.json', JSON.stringify(updateData, null, 2));
+
+      - name: Upload update manifest
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./latest.json
+          asset_name: latest.json
+          asset_content_type: application/json

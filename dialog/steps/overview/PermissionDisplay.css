@@ -1,0 +1,130 @@
+/* PermissionDisplay.css - Use nesting and align with components.css */
+
+/* Align with .panel or .card */
+.permission-container, .panel {
+  background: var(--color-background-secondary); /* Use variable */
+  border-radius: var(--border-radius-md); /* Use variable */
+  padding: var(--spacing-md); /* Use variable */
+  box-shadow: var(--shadow-sm); /* Use variable */
+  border: 1px solid var(--color-border-light); /* Use variable */
+  margin-bottom: var(--spacing-lg); /* Add margin */
+
+  /* Align with .panel-title */
+  & .permission-title, & .panel-title {
+    margin: 0 0 var(--spacing-md) 0; /* Use variable */
+    font-size: var(--font-size-lg); /* Use variable */
+    color: var(--color-text-primary); /* Use variable */
+    font-weight: var(--font-weight-medium); /* Use variable */
+  }
+
+  & .permission-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm); /* Use variable */
+    margin-bottom: var(--spacing-md); /* Use variable */
+  }
+
+  /* .permission-badge and severity classes are handled by .badge in components.css */
+  /* Ensure PermissionDisplay.tsx uses .badge, .badge-high etc. */
+
+  & .permission-text {
+    white-space: nowrap;
+  }
+
+  /* Align with .text-muted */
+  & .permission-note, & .text-muted {
+    margin: 0;
+    color: var(--color-text-muted); /* Use variable */
+    font-style: italic;
+    font-size: var(--font-size-sm); /* Add consistency */
+  }
+
+  /* Align with .form-description */
+  & .permission-description, & .form-description {
+    margin: var(--spacing-md) 0 0 0; /* Use variable */
+    color: var(--color-text-secondary); /* Use variable */
+    font-size: var(--font-size-sm); /* Use variable */
+  }
+
+  /* Denied permissions section */
+  & .denied-permissions {
+    margin-top: var(--spacing-md); /* Use variable */
+    border-top: 1px solid var(--color-border-light); /* Use variable */
+    padding-top: var(--spacing-sm); /* Use variable */
+
+    & summary {
+      cursor: pointer;
+      color: var(--color-text-secondary); /* Use variable */
+      font-size: var(--font-size-sm); /* Use variable */
+      user-select: none;
+      padding: var(--spacing-xs) 0; /* Use variable */
+      list-style: revert; /* Ensure disclosure triangle shows */
+
+      &:hover {
+        color: var(--color-text-primary); /* Use variable */
+      }
+    }
+
+    & .denied-permissions-content {
+      margin-top: var(--spacing-sm); /* Use variable */
+      padding: var(--spacing-sm); /* Use variable */
+      background-color: var(--color-background-tertiary); /* Use variable */
+      border-radius: var(--border-radius-sm); /* Use variable */
+    }
+
+    /* Style for denied badges within the details */
+    & .badge.permission-denied {
+      background-color: var(--color-background-quaternary); /* Use variable */
+      border: 1px dashed var(--color-border); /* Use variable */
+      color: var(--color-text-muted); /* Use variable */
+      opacity: 0.7;
+    }
+  }
+
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .permission-container, .panel {
+    background: var(--color-background-secondary); /* Use variable */
+    border-color: var(--color-border); /* Use variable */
+
+    & .permission-title, & .panel-title {
+      color: var(--color-text-primary); /* Use variable */
+    }
+
+    /* Badge dark mode is handled in components.css */
+
+    & .permission-note, & .text-muted {
+      color: var(--color-text-muted); /* Use variable */
+    }
+
+    & .permission-description, & .form-description {
+      color: var(--color-text-secondary); /* Use variable */
+    }
+
+
+    /* Denied permissions dark mode */
+    & .denied-permissions {
+      border-top-color: var(--color-border); /* Use variable */
+
+      & summary {
+        color: var(--color-text-secondary); /* Use variable */
+
+        &:hover {
+          color: var(--color-text-primary); /* Use variable */
+        }
+      }
+
+      & .denied-permissions-content {
+        background-color: var(--color-background-tertiary); /* Use variable */
+      }
+
+      & .badge.permission-denied {
+        background-color: var(--color-background-quaternary); /* Use variable */
+        border-color: var(--color-border-light); /* Use variable */
+        color: var(--color-text-muted); /* Use variable */
+      }
+    }
+  }
+}

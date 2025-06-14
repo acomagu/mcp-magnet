@@ -1,0 +1,7 @@
+{
+  "name": "@mcp-magnet/styles",
+  "private": true,
+  "exports": {
+    "./*": "./*"
+  }
+}

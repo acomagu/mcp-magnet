@@ -1,0 +1,31 @@
+/* Runtime Check Step Styles - RuntimeCheckStep 固有のスタイル */
+
+@import '@mcp-magnet/styles/variables.css';
+@import '@mcp-magnet/styles/components.css';
+
+/* components.css の .step-container を使用するようになったので、
+   .runtime-check-step の基本レイアウトは削除。
+   ステップ固有の調整のみ残す */
+
+/* インストールオプション固有のスタイル */
+.auto-install-option,
+.manual-install-instructions {
+  margin-top: var(--spacing-md);
+  width: 100%;
+}
+
+/* インストールコマンド情報固有のスタイル */
+.install-command-info {
+  margin: var(--spacing-sm) 0;
+  width: 100%;
+
+  & p {
+    margin-bottom: var(--spacing-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+  }
+}
+
+/* OR区切り線はcomponents.cssの.dividerを使用するので削除 */
+
+/* 他のスタイルはcomponents.cssに移動済み */

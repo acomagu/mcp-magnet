@@ -1,0 +1,34 @@
+{
+  "name": "@mcp-magnet/playground",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^1.4.0",
+    "@mcp-magnet/dialog": "workspace:^",
+    "@mcp-magnet/shell-commands": "workspace:^",
+    "@mcp-magnet/sig-verify": "workspace:^",
+    "@mcp-magnet/styles": "workspace:^",
+    "@opennextjs/cloudflare": "^1.0.2",
+    "@tabler/icons-react": "^3.34.0",
+    "@zod/mini": "catalog:",
+    "next": "15.3.2",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "typescript": "catalog:",
+    "vite": "^6.3.5",
+    "wrangler": "^4.14.4"
+  }
+}

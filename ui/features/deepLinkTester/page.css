@@ -1,0 +1,50 @@
+/* Align page container with .container from global.css */
+.deeplink-tester-container, .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl) var(--spacing-lg); /* Use variables, adjust padding */
+  max-width: 800px; /* Keep max-width if needed */
+  margin: 0 auto;
+}
+
+/* .description is already defined globally */
+
+/* Align tester wrapper with .panel or .card */
+.tester-wrapper, .panel {
+  width: 100%;
+  margin-top: var(--spacing-lg); /* Use variable */
+  border: 1px solid var(--color-border-light); /* Use variable */
+  border-radius: var(--border-radius-lg); /* Use variable */
+  padding: var(--spacing-xl); /* Use variable */
+  background-color: var(--color-background-secondary); /* Use variable */
+
+  /* DeepLink Tester に適用されるスタイル調整 (Keep specific overrides) */
+  & .deep-link-tester {
+    width: 100%;
+    border: none; /* Remove border from tester itself when wrapped */
+    margin: 0; /* Remove margin from tester itself */
+    border-radius: 0; /* Remove radius from tester itself */
+    overflow: visible; /* Reset overflow */
+
+    /* Hide the toggle button within this page context */
+    & .tester-toggle, & .deep-link-tester-toggle {
+      display: none;
+    }
+
+    /* Ensure content is always visible */
+    & .tester-content, & .deep-link-tester-content {
+      display: block !important;
+      opacity: 1 !important;
+      padding: 0; /* Remove padding from inner content if wrapper handles it */
+    }
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .tester-wrapper, .panel {
+    border-color: var(--color-border); /* Use variable */
+    background-color: var(--color-background-secondary); /* Use variable */
+  }
+}

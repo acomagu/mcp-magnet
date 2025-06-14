@@ -1,0 +1,13 @@
+{
+  "name": "@mcp-magnet/dialog",
+  "dependencies": {
+    "@mcp-magnet/shell-commands": "workspace:^",
+    "@mcp-magnet/styles": "workspace:",
+    "@types/react": "catalog:",
+    "@zod/mini": "catalog:",
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "vitest": "^3.1.3"
+  }
+}

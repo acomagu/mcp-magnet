@@ -1,0 +1,41 @@
+/* ターミナル出力のスタイル */
+/* 注: ターミナル色はvariables.cssで定義されています */
+@import '@mcp-magnet/styles/variables.css';
+
+.terminal-output {
+  background-color: var(--color-terminal-bg);
+  color: var(--color-terminal-text);
+  padding: var(--spacing-md); /* Use variable */
+  border-radius: var(--border-radius-sm); /* Use variable */
+  margin: var(--spacing-sm) 0; /* Use variable */
+  text-align: left;
+  font-family: monospace;
+  height: 150px; /* Keep specific height or make it configurable */
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+
+  &.empty {
+    display: none;
+  }
+
+  & .terminal-line {
+    padding: 2px 0;
+    line-height: 1.4;
+
+    /* エラー行のスタイル */
+    &.error {
+      color: var(--color-terminal-error);
+    }
+
+    /* 成功行のスタイル */
+    &.success {
+      color: var(--color-success);
+    }
+
+    /* 警告行のスタイル */
+    &.warning {
+      color: var(--color-warning);
+    }
+  }
+}

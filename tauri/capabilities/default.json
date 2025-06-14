@@ -1,0 +1,210 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "windows": [
+    "*"
+  ],
+  "permissions": [
+    "core:default",
+    "core:window:allow-close",
+    "opener:default",
+    "deep-link:default",
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    "fs:allow-write-text-file",
+    "fs:allow-read-text-file",
+    "fs:allow-exists",
+    "fs:allow-mkdir",
+    "os:default",
+    "dialog:default",
+    "shell:default",
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "spawn-powershell-install-node-winget",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "winget install OpenJS.NodeJS.LTS"
+          ]
+        },
+        {
+          "name": "spawn-powershell-open-node-download",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "Start-Process \"https://nodejs.org/en/download/\""
+          ]
+        },
+        {
+          "name": "spawn-sh-install-node-brew",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "brew install node"
+          ]
+        },
+        {
+          "name": "spawn-sh-install-node-apt",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
+          ]
+        },
+        {
+          "name": "spawn-powershell-install-deno-winget",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "winget install DenoLand.Deno"
+          ]
+        },
+        {
+          "name": "spawn-powershell-install-deno-script",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "iwr https://deno.land/install.ps1 -useb | iex"
+          ]
+        },
+        {
+          "name": "spawn-sh-install-deno-script",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "curl -fsSL https://deno.land/install.sh | sh"
+          ]
+        },
+        {
+          "name": "spawn-sh-install-python-brew",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "brew install python"
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "exec-python3-version",
+          "cmd": "python3",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "exec-python-version",
+          "cmd": "python",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "exec-node-version",
+          "cmd": "node",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "exec-deno-version",
+          "cmd": "deno",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "exec-winget-version",
+          "cmd": "winget",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "exec-brew-version",
+          "cmd": "brew",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "spawn-powershell-install-node-winget",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "winget install OpenJS.NodeJS.LTS"
+          ]
+        },
+        {
+          "name": "spawn-powershell-open-node-download",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "Start-Process \"https://nodejs.org/en/download/\""
+          ]
+        },
+        {
+          "name": "spawn-sh-install-node-brew",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "brew install node"
+          ]
+        },
+        {
+          "name": "spawn-sh-install-node-apt",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
+          ]
+        },
+        {
+          "name": "spawn-powershell-install-deno-winget",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "winget install DenoLand.Deno"
+          ]
+        },
+        {
+          "name": "spawn-powershell-install-deno-script",
+          "cmd": "powershell",
+          "args": [
+            "-Command",
+            "iwr https://deno.land/install.ps1 -useb | iex"
+          ]
+        },
+        {
+          "name": "spawn-sh-install-deno-script",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "curl -fsSL https://deno.land/install.sh | sh"
+          ]
+        },
+        {
+          "name": "spawn-sh-install-python-brew",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            "brew install python"
+          ]
+        }
+      ]
+    },
+    "log:default"
+  ]
+}

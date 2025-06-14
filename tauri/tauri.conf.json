@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "mcp-magnet",
+  "version": "0.1.0",
+  "identifier": "app.mcp-magnet",
+  "build": {
+    "beforeDevCommand": "pnpm --filter=ui dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm --filter=ui build",
+    "frontendDist": "../ui/dist"
+  },
+  "app": {
+    "windows": [],
+    "security": {
+      "csp": {
+        "default-src": "'self' customprotocol: asset:",
+        "connect-src": "ipc: http://ipc.localhost",
+        "font-src": ["https://fonts.gstatic.com"],
+        "img-src": "'self' asset: http://asset.localhost blob: data:",
+        "style-src": "'unsafe-inline' 'self' https://fonts.googleapis.com"
+      }
+    }
+  },
+  "plugins": {
+    "deep-link": {
+      "desktop": {
+        "schemes": ["mcp-magnet"]
+      }
+    },
+    "fs": {
+      "requireLiteralLeadingDot": false
+    },
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERCMTcxOEJCREMwNkVDRUIKUldUcjdBYmN1eGdYMjVIZzZoa2JQODV0RjRKc0FTZ0lPOUR6b2loNCtGQ1VvZ1B3SDNpc3NJTVcK",
+      "endpoints": ["https://github.com/acomagu/mcp-magnet/releases/latest/download/latest.json"]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "createUpdaterArtifacts": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

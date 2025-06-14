@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Magnet Gateway</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background: linear-gradient(135deg, #8645ff 0%, #74c3fc 100%); */
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 1rem;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .message {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .install-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        .install-link:hover {
+            background: #5a6fd8;
+        }
+        
+        .redirect-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            /* border-left: 4px solid #667eea; */
+        }
+        
+        .redirect-url {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 0.5rem;
+            border-radius: 4px;
+            word-break: break-all;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Opening MCP Magnet...</h1>
+
+        <div id="content">
+        </div>
+    </div>
+
+    <script>
+        function getUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = {};
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        function buildMcpMagnetUrl() {
+            const currentUrl = new URL(window.location.href);
+            const pathname = currentUrl.pathname;
+            const search = currentUrl.search;
+
+            // Remove leading slash from pathname
+            const action = pathname.replace(/^\//, '');
+
+            if (action) {
+                return `mcp-magnet://${action}${search}`;
+            }
+
+            return null;
+        }
+
+        function attemptRedirect() {
+            const mcpUrl = buildMcpMagnetUrl();
+
+            if (mcpUrl) {
+                // Show redirect information
+                const content = document.getElementById('content');
+                content.innerHTML = `
+                    <div class="message">
+                        MCP Magnetプロトコルリンクに自動リダイレクトしています...
+                    </div>
+                    <div class="redirect-info">
+                        <strong>リダイレクト先:</strong>
+                        <div class="redirect-url">${mcpUrl}</div>
+                        <p>自動リダイレクトされない場合: 
+                    <a href="https://github.com/acomagu/mcp-magnet" target="_blank">
+                        MCP Magnetをインストール
+                    </a></p>
+                    </div>
+                `;
+                
+                // Attempt redirect
+                setTimeout(() => {
+                    try {
+                        window.location.href = mcpUrl;
+                    } catch (error) {
+                        console.error('Failed to redirect to MCP Magnet:', error);
+                    }
+                }, 1000);
+            }
+        }
+
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', attemptRedirect);
+    </script>
+</body>
+</html>

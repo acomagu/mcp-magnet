@@ -1,0 +1,121 @@
+/* MCPConfigConfirmation.css */
+/* Most styles should be covered by components.css */
+/* Import common styles */
+@import '@mcp-magnet/styles/variables.css';
+@import '@mcp-magnet/styles/components.css';
+
+/* Specific styles for MCPConfigConfirmation */
+/* .mcp-config-confirmation rule removed, relying on .step-container */
+
+/* Specific styling for h2 within this component, if needed */
+.step-container h2 { /* Scoped to step-container */
+  /* Inherits from .step-header h2 */
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.confirmation-message {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Styles for the config preview section */
+/* Use .form-label for consistency */
+.config-label {
+  font-size: var(--font-size-lg); /* Keep larger size if needed */
+  color: var(--color-text-primary);
+  margin: var(--spacing-sm) 0;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Use .panel for the container */
+.config-preview {
+  /* Inherits styles from .panel */
+  flex: 1; /* Allow preview to grow */
+  overflow: auto; /* Keep overflow */
+  margin-bottom: var(--spacing-lg); /* Keep margin */
+
+  & pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    /* Remove background/padding/border from pre if panel handles it */
+    background: none;
+    padding: 0;
+    border: none;
+  }
+
+  & code {
+    background-color: var(--color-background-tertiary);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Styles for target file list */
+/* Use .panel for the container */
+.target-files {
+   /* Inherits styles from .panel */
+  margin-bottom: var(--spacing-lg); /* Keep margin */
+
+  & ul {
+    background: var(--color-background-tertiary);
+    border: 1px solid var(--color-border); /* Use consistent border */
+    border-radius: var(--border-radius-sm); /* Use consistent radius */
+    padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) 30px; /* Keep padding for list style */
+    margin: 0;
+    list-style-type: disc;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  & li {
+    font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+    color: var(--color-text-primary);
+    padding: 5px 0;
+    font-size: var(--font-size-sm);
+  }
+}
+
+
+
+.confirmation-question {
+  margin: var(--spacing-md) 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+/* Footer styles are inherited from .dialog-footer */
+/* Button styles are inherited from .button */
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .dialog h2 { /* Scoped to dialog */
+     border-bottom-color: var(--color-border);
+  }
+
+  /* .config-preview inherits dark mode from .panel */
+  .config-preview pre {
+     color: var(--color-text-primary);
+  }
+
+  /* .target-files inherits dark mode from .panel */
+  .target-files {
+    & ul {
+      background: var(--color-background-tertiary);
+      border-color: var(--color-border);
+    }
+    & li {
+       color: var(--color-text-primary);
+    }
+  }
+}

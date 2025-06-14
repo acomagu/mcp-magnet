@@ -1,0 +1,8 @@
+*.tsbuildinfo
+.open-next
+/.next/
+/build
+/out/
+next-env.d.ts
+node_modules
+app/icon.ico

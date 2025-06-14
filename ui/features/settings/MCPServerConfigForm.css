@@ -1,0 +1,196 @@
+/* MCP サーバー設定フォームのスタイル */
+/* Use nesting and potentially integrate with .panel or .card from components.css if applicable */
+.mcp-server-config-form {
+  max-width: 600px;
+  background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-lg);
+  text-align: left;
+  color: var(--color-text-primary);
+
+  & h2 {
+    font-size: var(--font-size-xl);
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+  }
+
+  & p {
+    color: var(--color-text-secondary);
+    /* Use variable */
+    margin-bottom: var(--spacing-lg);
+    /* Use variable */
+    font-size: var(--font-size-sm);
+    /* Add consistency */
+  }
+
+  & .loading-message {
+    text-align: center;
+    color: var(--color-text-muted);
+    /* Use variable */
+    font-style: italic;
+    padding: var(--spacing-lg) 0;
+    /* Use variable */
+  }
+
+  & .server-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    /* Use variable */
+    margin-bottom: var(--spacing-lg);
+    /* Use variable */
+  }
+
+  & .server-item {
+    padding: var(--spacing-md);
+    /* Use variable */
+    border-radius: var(--border-radius-md);
+    /* Use variable */
+    background-color: var(--color-background-tertiary);
+    /* Use variable */
+    transition: background-color 0.2s;
+    border: 1px solid var(--color-border-light);
+    /* Add border for consistency */
+
+    &:hover {
+      background-color: var(--color-background-quaternary);
+      /* Use variable */
+    }
+  }
+
+  /* Align with .form-check */
+  & .server-toggle,
+  & .form-check {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: var(--spacing-sm);
+    /* Add gap */
+  }
+
+  /* Align with .form-check-input */
+  & .server-toggle input[type="checkbox"],
+  & .form-check-input {
+    margin: 0;
+    /* Remove default margin */
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+    /* Use variable */
+  }
+
+  & .server-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    /* Add gap */
+    flex-grow: 1;
+    /* Allow name to take space */
+  }
+
+  /* Consolidate with .app-icon or create common .item-icon */
+  & .server-icon,
+  & .app-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* margin-right: 10px; Removed, using gap now */
+    display: flex;
+    /* Added for centering if needed */
+    align-items: center;
+    /* Added for centering if needed */
+    justify-content: center;
+    /* Added for centering if needed */
+    color: white;
+    /* Default color */
+  }
+
+  /* Use variables for background colors */
+  & .server-icon.claude {
+    background-color: var(--color-icon-claude);
+  }
+
+  & .server-icon.cursor {
+    background-color: var(--color-icon-cursor);
+  }
+
+  & .server-icon.windsurf {
+    background-color: var(--color-icon-windsurf);
+  }
+
+  & .server-icon.chatgpt {
+    background-color: var(--color-icon-chatgpt);
+  }
+
+  & .server-name {
+    font-size: var(--font-size-md);
+    /* Use variable */
+    font-weight: var(--font-weight-medium);
+    /* Use variable */
+    color: var(--color-text-primary);
+    /* Use variable */
+  }
+
+  /* Align with .dialog-footer */
+  & .settings-actions,
+  & .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--spacing-lg);
+    /* Use variable */
+    padding-top: var(--spacing-lg);
+    /* Add padding */
+    border-top: 1px solid var(--color-border-light);
+    /* Add border */
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .mcp-server-config-form {
+    background-color: var(--color-background);
+    /* Use variable */
+    box-shadow: var(--shadow-md);
+    /* Use variable */
+
+    & h2 {
+      color: var(--color-text-primary);
+      /* Use variable */
+    }
+
+    & p {
+      color: var(--color-text-secondary);
+      /* Use variable */
+    }
+
+    & .loading-message {
+      color: var(--color-text-muted);
+      /* Use variable */
+    }
+
+    & .server-item {
+      background-color: var(--color-background-secondary);
+      /* Use variable */
+      border-color: var(--color-border);
+      /* Use variable */
+
+      &:hover {
+        background-color: var(--color-background-tertiary);
+        /* Use variable */
+      }
+    }
+
+    & .server-name {
+      color: var(--color-text-primary);
+      /* Use variable */
+    }
+
+    & .settings-actions,
+    & .dialog-footer {
+      border-top-color: var(--color-border);
+      /* Use variable */
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "name": "@mcp-magnet/sig-verify",
+  "main": "pkg/sig_verify.js",
+  "packageManager": "pnpm@10.9.0"
+}

@@ -1,0 +1,14 @@
+"$schema" = "node_modules/wrangler/config-schema.json"
+
+main = ".open-next/worker.js"
+name = "mcp-magnet-playground"
+compatibility_date = "2025-03-25"
+compatibility_flags = ["nodejs_compat"]
+
+routes = [
+  { pattern = "playground.mcpmagnet.app", custom_domain = true }
+]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"

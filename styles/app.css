@@ -1,0 +1,47 @@
+/* App.css - アプリケーション特有の基本スタイル */
+
+@import './variables.css';
+@import './global.css';
+
+/* この App.css は基本的なアプリケーション構造のみを定義 */
+/* コンポーネント固有のスタイルは components.css に移動しました */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  padding: var(--spacing-md);
+}
+
+.app-header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-light);
+  background-color: var(--color-background);
+}
+
+.app-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.app-footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--color-border-light);
+  background-color: var(--color-background);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .app-header,
+  .app-footer {
+    background-color: var(--color-background-secondary);
+  }
+}

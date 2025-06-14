@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WASM Verify Test</title>
+</head>
+<body>
+    <h1>Rust WASM Verify Test</h1>
+    <button id="run">Run Verification</button>
+    <pre id="output"></pre>
+
+    <script type="module">
+        import init, { verify } from "./pkg/sig-verify.js";
+
+        async function run() {
+            await init();
+            const json = '{"ok": true}\n';
+            const sig = `-----BEGIN SSH SIGNATURE-----
+U1NIU0lHAAAAAQAAARcAAAAHc3NoLXJzYQAAAAMBAAEAAAEBAMitrx4GJsSn9Wsc/ZLQl8
+C2SzLPB+P+NoxE3YrWOB6fSRSH75CA+rbIYvkMYCnyxh3+YY5Ti5gPgOURpi0/3ef/xa8M
+yD5wfBG/e7RQZZE/g2f1fatcHm2w0tXImOaOVgY7H1lPX9Jy17WugPFBnFMSdwvyv28t0u
+dsD89wEY+mFT/eWLFeUf7xrPfmVH0U1RW/gYIyF9bDISrB1fLSCT/krshjRBJtdPkzMVZk
+XHuet3azMJiu+Mmmdm0BYdypwYnNNvEKppHFzlzRk9KC1W0f19zn2B6nAi16k/rOvCpf5A
+7Z6OmXgPxSCAxLZtOpNnQrYTOC5XKzMGs3tLv5trcAAAAEZmlsZQAAAAAAAAAGc2hhNTEy
+AAABFAAAAAxyc2Etc2hhMi01MTIAAAEAb+W0AFK6OhWzZOGzc1JHgRngAhA+zrRi1lf8OD
+xlE6OUITL2r6JXrjy9yrxibn6wUu9BaZrfXPcuS+Z6KQ4B6bv8luMEZ/asxedhkbdNq9d4
+nU8P4sZy2BMOSOdVkO8pgNpzQqD+obimdnJ7Ldwk0wvWemQaEA9FW/Qdd3WVkZ/05iigFk
+j2d0sEUhIXbVHP0ft77IcYkEQwe57i/kVtWQi1JdKlKFh06FyJVxUf+2nuPBOx6HZ/op5Y
+z4daO0Usz8Cs6jIBZRNh6CLfhCQpJIID+mWO764wS5+lWTVM5Ptwy1qfNMpJ5Y1ZQt+HiM
+Mi0feMVdH647q+13Xo/NxBbA==
+-----END SSH SIGNATURE-----`; // 適当な PGP or SSH 署名データを入れる
+            const key = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIra8eBibEp/VrHP2S0JfAtksyzwfj/jaMRN2K1jgen0kUh++QgPq2yGL5DGAp8sYd/mGOU4uYD4DlEaYtP93n/8WvDMg+cHwRv3u0UGWRP4Nn9X2rXB5tsNLVyJjmjlYGOx9ZT1/Scte1roDxQZxTEncL8r9vLdLnbA/PcBGPphU/3lixXlH+8az35lR9FNUVv4GCMhfWwyEqwdXy0gk/5K7IY0QSbXT5MzFWZFx7nrd2szCYrvjJpnZtAWHcqcGJzTbxCqaRxc5c0ZPSgtVtH9fc59gepwItepP6zrwqX+QO2ejpl4D8UggMS2bTqTZ0K2EzguVyszBrN7S7+ba3 yuki@yuki-ubuntu'; // 適当な公開鍵データを入れる
+
+            const result = verify(json, sig, key);
+            document.getElementById('output').textContent = 'Verification result: ' + result;
+        }
+
+        document.getElementById('run').addEventListener('click', run);
+    </script>
+</body>
+</html>

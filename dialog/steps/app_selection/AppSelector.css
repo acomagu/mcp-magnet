@@ -1,0 +1,237 @@
+/* AppSelector.css - Specific styles for AppSelector component */
+
+@import '@mcp-magnet/styles/variables.css';
+@import '@mcp-magnet/styles/components.css';
+
+/* All step layout styles (.step-container, .step-header, etc.) are handled by components.css */
+
+/* Content Area specific styles */
+.app-selector-content {
+  /* Inherits padding from .dialog */
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.app-selector-apps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* App Option Styling */
+.app-option {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  overflow: hidden; /* Keep overflow hidden for accordion */
+
+  &.selected {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb, 0, 123, 255), 0.25);
+  }
+
+  & .app-option-label {
+    /* Align with .form-check */
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    cursor: pointer;
+    gap: var(--spacing-sm);
+    background-color: var(--color-background);
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--color-background-tertiary);
+    }
+  }
+
+  & .app-option-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-grow: 1;
+  }
+
+  & .app-name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0 var(--spacing-xs);
+  }
+}
+
+/* Project Accordion - CSS-only implementation */
+.project-accordion {
+  background-color: var(--color-background-tertiary);
+  border-top: 1px solid var(--color-border-light);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out;
+  padding: 0 var(--spacing-md);
+  opacity: 0;
+}
+
+/* Use the app checkbox to control the accordion */
+.app-option.selected .project-accordion {
+  max-height: 500px; /* Adjust as needed */
+  padding: var(--spacing-md);
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Align with .form-check */
+.project-setting-option {
+  display: flex;
+  align-items: flex-start; /* Keep align-items start */
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+}
+
+/* .project-setting-checkbox inherits from .form-check-input */
+.project-setting-checkbox {
+  margin-top: 3px; /* Keep specific alignment */
+}
+
+.project-setting-content {
+  & h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
+
+  & p {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+
+  & h4 {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
+}
+
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-sm);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-xs);
+}
+
+.project-path {
+  color: var(--color-text-secondary);
+  word-break: break-all;
+  margin-right: var(--spacing-sm);
+}
+
+/* Specific button style for removing project */
+.remove-project-btn {
+  background: none;
+  border: none;
+  color: var(--color-danger);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  padding: var(--spacing-xs) var(--spacing-xs);
+  line-height: 1;
+
+  &:hover {
+    color: var(--color-danger-bg, #c53030); /* Check if danger-bg is defined */
+  }
+}
+
+/* Specific button style for adding project */
+.add-project-btn {
+  /* Use .button styles as base */
+  padding: var(--spacing-sm) var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  text-align: center;
+
+  &:hover {
+    background-color: var(--color-background-tertiary);
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .app-option {
+     border-color: var(--color-border);
+     & .app-option-label {
+        background-color: var(--color-background);
+        &:hover {
+           background-color: var(--color-background-tertiary);
+        }
+     }
+     &.selected {
+        border-color: var(--color-primary);
+     }
+  }
+
+  .project-accordion {
+     background-color: var(--color-background-tertiary);
+     border-top-color: var(--color-border);
+  }
+
+  .project-setting-option {
+     background-color: var(--color-background);
+     border-color: var(--color-border);
+  }
+
+   .project-setting-content p {
+      color: var(--color-text-secondary);
+   }
+
+   .project-item {
+      background-color: var(--color-background);
+      border-color: var(--color-border);
+   }
+
+   .project-path {
+      color: var(--color-text-secondary);
+   }
+
+   .remove-project-btn {
+      color: var(--color-danger-text, #ff8080); /* Use text color variable */
+      &:hover {
+         color: var(--color-danger); /* Darker red on hover */
+      }
+   }
+
+   .add-project-btn {
+      border-color: var(--color-border);
+      background-color: var(--color-background);
+      color: var(--color-primary);
+      &:hover {
+         background-color: var(--color-background-tertiary);
+      }
+   }
+}

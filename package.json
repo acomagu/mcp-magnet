@@ -1,0 +1,20 @@
+{
+  "name": "mcp-magnet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tauri dev",
+    "build-icon": "tauri icon logo.png && cp -f tauri/icons/icon.ico playground/app/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.9.0",
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.5.0"
+  },
+  "dependencies": {
+    "netlify-cli": "^21.2.1"
+  }
+}

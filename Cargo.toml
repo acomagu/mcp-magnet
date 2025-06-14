@@ -1,0 +1,7 @@
+[workspace]
+members = [
+  "tauri",
+  "sig-verify",
+  "shell-commands",
+]
+resolver = "3"

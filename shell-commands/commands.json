@@ -1,0 +1,163 @@
+[
+  {
+    "name": "stream_test",
+    "command": "bash",
+    "args": [
+      "-c",
+      "while true; do echo 'Hello from Rust!'; sleep 1; done"
+    ]
+  },
+  {
+    "name": "deno_version_check",
+    "command": "deno",
+    "args": [
+      "--version"
+    ]
+  },
+  {
+    "name": "deno_install_windows_winget",
+    "command": "powershell",
+    "args": [
+      "-Command",
+      "winget install DenoLand.Deno"
+    ]
+  },
+  {
+    "name": "deno_install_windows_fallback",
+    "command": "powershell",
+    "args": [
+      "-Command",
+      "iwr https://deno.land/install.ps1 -useb | iex"
+    ]
+  },
+  {
+    "name": "deno_install_unix",
+    "command": "sh",
+    "args": [
+      "-c",
+      "curl -fsSL https://deno.land/install.sh | sh"
+    ]
+  },
+  {
+    "name": "node_version_check",
+    "command": "node",
+    "args": [
+      "--version"
+    ]
+  },
+  {
+    "name": "node_install_windows_winget",
+    "command": "powershell",
+    "args": [
+      "-Command",
+      "winget install OpenJS.NodeJS.LTS"
+    ]
+  },
+  {
+    "name": "node_install_windows_fallback",
+    "command": "powershell",
+    "args": [
+      "-Command",
+      "Start-Process \"https://nodejs.org/en/download/\""
+    ]
+  },
+  {
+    "name": "node_install_macos",
+    "command": "sh",
+    "args": [
+      "-c",
+      "brew install node"
+    ]
+  },
+  {
+    "name": "node_install_linux",
+    "command": "sh",
+    "args": [
+      "-c",
+      "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
+    ]
+  },
+  {
+    "name": "python3_version_check",
+    "command": "python3",
+    "args": [
+      "--version"
+    ]
+  },
+  {
+    "name": "python_version_check",
+    "command": "python",
+    "args": [
+      "--version"
+    ]
+  },
+  {
+    "name": "python_install_macos",
+    "command": "sh",
+    "args": [
+      "-c",
+      "brew install python"
+    ]
+  },
+  {
+    "name": "winget_version_check",
+    "command": "winget",
+    "args": [
+      "--version"
+    ]
+  },
+  {
+    "name": "homebrew_version_check",
+    "command": "brew",
+    "args": [
+      "--version"
+    ]
+  },
+  {
+    "name": "claude_kill_windows",
+    "command": "taskkill",
+    "args": [
+      "/F",
+      "/IM",
+      "Claude.exe"
+    ]
+  },
+  {
+    "name": "claude_kill_macos",
+    "command": "killall",
+    "args": [
+      "Claude"
+    ]
+  },
+  {
+    "name": "claude_kill_linux",
+    "command": "pkill",
+    "args": [
+      "-f",
+      "claude"
+    ]
+  },
+  {
+    "name": "claude_start_windows",
+    "command": "cmd",
+    "args": [
+      "/c",
+      "start",
+      "\"\"",
+      "\"%LocalAppData%\\AnthropicClaude\\Claude.exe\""
+    ]
+  },
+  {
+    "name": "claude_start_macos",
+    "command": "open",
+    "args": [
+      "-a",
+      "Claude"
+    ]
+  },
+  {
+    "name": "claude_start_linux",
+    "command": "claude",
+    "args": []
+  }
+]
